@@ -3,12 +3,11 @@ import styles from '../styles/calculator.module.css'
 import { Menu, Dropdown, Button, Card,Tabs, Row, Col } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { useState, useRef } from 'react';
-import SPI from "../components/spi";
 import CPI from '../components/cpi';
 
 const Calculator: NextPage = () => {
 
-    const cpiRef = useRef(null) // ref used for getting access to the CalculateCPI function of CPI component
+    const cpiRef  = useRef<any>(null) // ref used for getting access to the CalculateCPI function of CPI component
 
     const [CPIorSPI, setCPIorSPI] = useState("spi")
     const [Dept, setDept] = useState(null)
