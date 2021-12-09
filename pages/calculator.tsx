@@ -1,18 +1,18 @@
 import type { NextPage } from 'next'
 import styles from '../styles/calculator.module.css'
-import { Menu, Dropdown, Button, Card,Tabs, Row, Col } from 'antd';
+import { Menu, Dropdown, Button, Card, Tabs, Row, Col } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { useState, useRef } from 'react';
 import CPI from '../components/cpi';
 
 const Calculator: NextPage = () => {
 
-    const cpiRef  = useRef<any>(null) // ref used for getting access to the CalculateCPI function of CPI component
+    const cpiRef = useRef<any>(null) // ref used for getting access to the CalculateCPI function of CPI component
 
     const [CPIorSPI, setCPIorSPI] = useState("spi")
     const [Dept, setDept] = useState(null)
     const [Sem, setSem] = useState(null)
-    const [answer, setanswer] = useState(null) 
+    const [answer, setanswer] = useState(null)
 
     const { TabPane } = Tabs;
 
@@ -64,18 +64,18 @@ const Calculator: NextPage = () => {
                         </div>
                         <Tabs className={styles.tabs} onTabClick={onClick}>
                             <TabPane tab="SPI" key="spi" className={styles.tabpane}>
-                                {Dept&&Sem ? <CPI branch={Dept} numberOfSems={Sem} inSPITab={true} ref={cpiRef}/>  : 'Please select department and sem'}
-                                
+                                {Dept && Sem ? <CPI branch={Dept} numberOfSems={Sem} inSPITab={true} ref={cpiRef} /> : 'Please select department and sem'}
+
                             </TabPane>
                             <TabPane tab="CPI" key="cpi" className={styles.tabpane}>
-                               {Dept&&Sem ? <CPI branch={Dept} numberOfSems={Sem} inSPITab={false} ref={cpiRef}/> : 'Please select department and sem'}
+                                {Dept && Sem ? <CPI branch={Dept} numberOfSems={Sem} inSPITab={false} ref={cpiRef} /> : 'Please select department and sem'}
                             </TabPane>
                         </Tabs>
                     </Card>
                     <Row style={{ fontWeight: 'bolder', fontSize: '1rem', marginTop: '0.2rem', display: 'flex', alignItems: 'center' }}>
                         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
                             <Button type='primary' danger onClick={() => {
-                                if(cpiRef.current) {
+                                if (cpiRef.current) {
                                     setanswer(cpiRef.current.calculate())
                                 }
                             }}>
@@ -83,7 +83,7 @@ const Calculator: NextPage = () => {
                             </Button>
                         </Col>
                         <Col xs={12} sm={12} md={8} lg={8} xl={8} style={{ textAlign: 'center', fontSize: '1rem' }}>
-                            {answer? CPIorSPI === "cpi" ? 'Your CPI is:' : 'Your SPI is' : null}
+                            {answer ? CPIorSPI === "cpi" ? 'Your CPI is:' : 'Your SPI is' : null}
                         </Col>
                         <Col xs={12} sm={12} md={8} lg={8} xl={8} className={styles.spi}>
                             {answer}
